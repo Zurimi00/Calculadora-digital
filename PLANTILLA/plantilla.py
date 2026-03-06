@@ -202,7 +202,9 @@ def hexadecimal_a_decimal(hexadecimal):
 def bits_a_bytes(val): return val / 8
 def kilobytes_a_megabytes(val): return val / 1000
 def megabytes_a_gigabytes(val): return val / 1000
-
+def gigabytes_a_megabytes(val): return val * 1000
+def megabytes_a_kilobytes(val): return val / 1000
+def kilobytes_a_bytes(val): return val * 1000
 
 # TODO: Implementar las funciones inversas
 # gigabytes_a_megabytes(), megabytes_a_kilobytes(), kilobytes_a_bytes()
