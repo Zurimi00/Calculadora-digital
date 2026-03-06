@@ -17,30 +17,7 @@ from datetime import datetime
 # Variable global para almacenar historial (lista de strings)
 historial = []
 
-def borrar_historial():
-  global historial
-  #Dar la opción al usuario de borrar el historial, se repite hasta que se ingrese una opcion valida
-  while True:
-    try:
-      opcion_borrar_historial = int(input("Seguro que quieres borrar el historial?\n1 = SI\n2 = NO\n"))
 
-      if opcion_borrar_historial == 1:
-        #Esto limpia el historial de la memoria
-        historial.clear()
-        if os.path.exists("datos/historial.txt"):
-          with open("datos/historial.txt", "w") as archivo:
-            archivo.write("")  # Vacía el archivo si es que existe
-        print("✅ Historial borrado correctamente.")
-        return
-      elif opcion_borrar_historial == 2:
-        #Esto vuelve al menu principal si se decide que no
-        return
-        #Se imprime si se elige una opcion invalida con numero entero
-      else:
-        print("Elige una de las opciones validas")
-        #Se imprime si se elige una letra como opcion
-    except ValueError:
-      print("Error: Debes ingresar un número entero")
 
 # ============================================
 # SECCIÓN 1: FUNCIONES MATEMÁTICAS (Estudiante 2)
@@ -220,46 +197,11 @@ def hexadecimal_a_decimal(hexadecimal):
 # ============================================
 # SECCIÓN 3: CONVERSIÓN DE UNIDADES (Estudiante 3)
 # ============================================
-
-def bytes_a_kilobytes(bytes_val):
-    """
-    Convierte bytes a kilobytes.
-
-    Args:
-        bytes_val (float): Cantidad en bytes
-
-    Returns:
-        float: Cantidad en kilobytes
-    """
-    return bytes_val / 1024
-
-
-def kilobytes_a_megabytes(kb):
-    """
-    Convierte kilobytes a megabytes.
-
-    Args:
-        kb (float): Cantidad en kilobytes
-
-    Returns:
-        float: Cantidad en megabytes
-    """
-    # TODO: Implementar (1 MB = 1024 KB)
-    pass
-
-
-def megabytes_a_gigabytes(mb):
-    """
-    Convierte megabytes a gigabytes.
-
-    Args:
-        mb (float): Cantidad en megabytes
-
-    Returns:
-        float: Cantidad en gigabytes
-    """
-    # TODO: Implementar
-    pass
+# CONVERTIDOR
+# Conversiones que ocupamos
+def bits_a_bytes(val): return val / 8
+def kilobytes_a_megabytes(val): return val / 1000
+def megabytes_a_gigabytes(val): return val / 1000
 
 
 # TODO: Implementar las funciones inversas
@@ -363,7 +305,30 @@ def cargar_historial_archivo():
 
     pass
 
+def borrar_historial():
+  global historial
+  #Dar la opción al usuario de borrar el historial, se repite hasta que se ingrese una opcion valida
+  while True:
+    try:
+      opcion_borrar_historial = int(input("Seguro que quieres borrar el historial?\n1 = SI\n2 = NO\n"))
 
+      if opcion_borrar_historial == 1:
+        #Esto limpia el historial de la memoria
+        historial.clear()
+        if os.path.exists("datos/historial.txt"):
+          with open("datos/historial.txt", "w") as archivo:
+            archivo.write("")  # Vacía el archivo si es que existe
+        print("✅ Historial borrado correctamente.")
+        return
+      elif opcion_borrar_historial == 2:
+        #Esto vuelve al menu principal si se decide que no
+        return
+        #Se imprime si se elige una opcion invalida con numero entero
+      else:
+        print("Elige una de las opciones validas")
+        #Se imprime si se elige una letra como opcion
+    except ValueError:
+      print("Error: Debes ingresar un número entero")
 # ============================================
 # SECCIÓN 6: VALIDACIÓN (Estudiante 1)
 # ============================================
