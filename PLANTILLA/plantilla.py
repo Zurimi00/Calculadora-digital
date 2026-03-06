@@ -5,7 +5,7 @@ Proyecto de Tecnología Digital
 Equipo:
 - Estudiante 1: [Nombre] - Estructura Principal y Gestión de Datos
 - Estudiante 2: [Nombre] - Funciones Matemáticas
-- Estudiante 3: [Nombre] - Conversores y Sistema de Historial
+- Estudiante 3: [Luis Alejandro Ambriz Cordero] - Conversores y Sistema de Historial
 
 Fecha: Febrero 2026
 Universidad de Guadalajara - Campus GDL
@@ -16,6 +16,31 @@ from datetime import datetime
 
 # Variable global para almacenar historial (lista de strings)
 historial = []
+
+def borrar_historial():
+  global historial
+  #Dar la opción al usuario de borrar el historial, se repite hasta que se ingrese una opcion valida
+  while True:
+    try:
+      opcion_borrar_historial = int(input("Seguro que quieres borrar el historial?\n1 = SI\n2 = NO\n"))
+
+      if opcion_borrar_historial == 1:
+        #Esto limpia el historial de la memoria
+        historial.clear()
+        if os.path.exists("datos/historial.txt"):
+          with open("datos/historial.txt", "w") as archivo:
+            archivo.write("")  # Vacía el archivo si es que existe
+        print("✅ Historial borrado correctamente.")
+        return
+      elif opcion_borrar_historial == 2:
+        #Esto vuelve al menu principal si se decide que no
+        return
+        #Se imprime si se elige una opcion invalida con numero entero
+      else:
+        print("Elige una de las opciones validas")
+        #Se imprime si se elige una letra como opcion
+    except ValueError:
+      print("Error: Debes ingresar un número entero")
 
 # ============================================
 # SECCIÓN 1: FUNCIONES MATEMÁTICAS (Estudiante 2)
