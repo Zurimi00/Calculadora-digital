@@ -8,8 +8,8 @@ Equipo:
 - Estudiante 2: Zurith Anelis Fierros Garcia  - Funciones Matemáticas
 - Estudiante 3: Luis Alejandro Ambriz Cordero - Conversores y Sistema de Historial
 =======
-- Estudiante 1: [Nombre] - Estructura Principal y Gestión de Datos
-- Estudiante 2: [Nombre] - Funciones Matemáticas
+- Estudiante 1: [Luis Daniel Negrete Mata ] - Estructura Principal y Gestión de Datos
+- Estudiante 2: [Zurith Anelis Fierros García] - Funciones Matemáticas
 - Estudiante 3: [Luis Alejandro Ambriz Cordero] - Conversores y Sistema de Historial
 >>>>>>> 0a0813821a33a220160407704df4efe08586822d
 
@@ -332,4 +332,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
