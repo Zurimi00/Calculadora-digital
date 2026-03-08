@@ -3,9 +3,15 @@ Calculadora Multifuncional Interactiva - Versión Avanzada
 Proyecto de Tecnología Digital
 
 Equipo:
+<<<<<<< HEAD
 - Estudiante 1: Luis Daniel Negrete Mata - Estructura Principal y Gestión de Datos
 - Estudiante 2: Zurith Anelis Fierros Garcia  - Funciones Matemáticas
 - Estudiante 3: Luis Alejandro Ambriz Cordero - Conversores y Sistema de Historial
+=======
+- Estudiante 1: [Nombre] - Estructura Principal y Gestión de Datos
+- Estudiante 2: [Nombre] - Funciones Matemáticas
+- Estudiante 3: [Luis Alejandro Ambriz Cordero] - Conversores y Sistema de Historial
+>>>>>>> 0a0813821a33a220160407704df4efe08586822d
 
 Fecha: Febrero 2026
 Universidad de Guadalajara - Campus GDL"""
@@ -15,6 +21,8 @@ from datetime import datetime
 
 # Variable global para almacenar historial (lista de strings)
 historial = []
+
+
 
 # ============================================
 # SECCIÓN 1: FUNCIONES MATEMÁTICAS (Estudiante 2)
@@ -86,49 +94,14 @@ def hexadecimal_a_decimal(hexadecimal):
 # SECCIÓN 3: CONVERSIÓN DE UNIDADES (Estudiante 3)
 # ============================================
 
-def bytes_a_kilobytes(bytes_val):
-    """
-    Convierte bytes a kilobytes.
-
-    Args:
-        bytes_val (float): Cantidad en bytes
-
-    Returns:
-        float: Cantidad en kilobytes
-    """
-    return bytes_val / 1024
-
-
-def kilobytes_a_megabytes(kb):
-    """
-    Convierte kilobytes a megabytes.
-
-    Args:
-        kb (float): Cantidad en kilobytes
-
-    Returns:
-        float: Cantidad en megabytes
-    """
-    # TODO: Implementar (1 MB = 1024 KB)
-    pass
-
-
-def megabytes_a_gigabytes(mb):
-    """
-    Convierte megabytes a gigabytes.
-
-    Args:
-        mb (float): Cantidad en megabytes
-
-    Returns:
-        float: Cantidad en gigabytes
-    """
-    # TODO: Implementar
-    pass
-
-
-# TODO: Implementar las funciones inversas
-# gigabytes_a_megabytes(), megabytes_a_kilobytes(), kilobytes_a_bytes()
+# CONVERTIDOR
+# Conversiones que ocupamos
+def bits_a_bytes(val): return val / 8
+def kilobytes_a_megabytes(val): return val / 1000
+def megabytes_a_gigabytes(val): return val / 1000
+def gigabytes_a_megabytes(val): return val * 1000
+def megabytes_a_kilobytes(val): return val / 1000
+def kilobytes_a_bytes(val): return val * 1000
 
 
 # ============================================
@@ -136,53 +109,46 @@ def megabytes_a_gigabytes(mb):
 # ============================================
 
 def agregar_al_historial(operacion, num1, num2, resultado):
-    """
-    Agrega una operación al historial.
-
-    Args:
-        operacion (str): Tipo de operación (ej: "Suma", "División")
-        num1 (float): Primer número
-        num2 (float): Segundo número
-        resultado (float): Resultado de la operación
-    """
     global historial
-
-    # TODO: Implementar
-    # 1. Crear string con formato: "operación: num1 op num2 = resultado"
-    # 2. Agregar al final de la lista historial
-    # 3. Si historial tiene más de 10 elementos, eliminar el primero
-
-    # Ejemplo de formato:
-    # fecha_hora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    # entrada = f"{fecha_hora} | {operacion}: {num1} + {num2} = {resultado}"
-    # historial.append(entrada)
-
-    pass
-
+    fecha_hora = datetime.now().strftime("%H:%M:%S")
+    # Formato: fecha, operación, resultado
+    entrada = f"[{fecha_hora}] {operacion}: {num1} y {num2} = {resultado}"
+    historial.append(entrada)
+    # Almacenar solo las últimas 10 operaciones
+    if len(historial) > 10: historial.pop(0)
 
 def mostrar_historial():
-    """
-    Muestra el historial de operaciones.
-    """
-    global historial
+    print("\n" + "HISTORIAL RECIENTE " * 2)
+    if not historial:
+        print("   > El historial está vacío.")
+    else:
+        for i, registro in enumerate(historial, 1):
+            print(f"  {i}. {registro}")
 
-    # TODO: Implementar
-    # 1. Verificar si historial está vacío
-    # 2. Si está vacío, mostrar mensaje
-    # 3. Si no, iterar sobre historial y mostrar cada operación numerada
+def borrar_historial():
+  global historial
+  #Dar la opción al usuario de borrar el historial, se repite hasta que se ingrese una opcion valida
+  while True:
+    try:
+      opcion_borrar_historial = int(input("Seguro que quieres borrar el historial?\n1 = SI\n2 = NO\n"))
 
-    pass
-
-
-def limpiar_historial():
-    """
-    Limpia el historial de operaciones.
-    """
-    global historial
-
-    # TODO: Implementar
-    # Vaciar la lista historial
-    pass
+      if opcion_borrar_historial == 1:
+        #Esto limpia el historial de la memoria
+        historial.clear()
+        if os.path.exists("datos/historial.txt"):
+          with open("datos/historial.txt", "w") as archivo:
+            archivo.write("")  # Vacía el archivo si es que existe
+        print("✅ Historial borrado correctamente.")
+        return
+      elif opcion_borrar_historial == 2:
+        #Esto vuelve al menu principal si se decide que no
+        return
+        #Se imprime si se elige una opcion invalida con numero entero
+      else:
+        print("Elige una de las opciones validas")
+        #Se imprime si se elige una letra como opcion
+    except ValueError:
+      print("Error: Debes ingresar un número entero")
 
 
 # ============================================
@@ -332,60 +298,38 @@ def menu_sistemas_numericos():
 # ============================================
 
 def main():
-    """Función principal del programa"""
-
-    print("╔" + "═"*58 + "╗")
-    print("║" + " "*58 + "║")
-    print("║" + "  CALCULADORA MULTIFUNCIONAL - Versión Avanzada".center(58) + "║")
-    print("║" + " "*58 + "║")
-    print("║" + "  Con historial, funciones y persistencia de datos".center(58) + "║")
-    print("║" + " "*58 + "║")
-    print("╚" + "═"*58 + "╝")
-
-    # Cargar historial al iniciar
     cargar_historial_archivo()
-    print("\n✅ Historial cargado desde archivo.")
+    while True:
+        # Menú
+        print("""
+  ++ ______________________________________________++
+     ||                                              ||
+     ||   _____   _   _    ____   _ _     __         ||
+     ||  | ____| | | | |  / ___| |  _  \ | |         ||
+     ||  | |     | | | | |  _    | | | | | |         ||
+     ||  | |___  | |_| | | |_| | | |_| | | |___      ||
+     ||  |_____|  \___/   \____| |____/  |_____|     ||
+     ||                                              ||
+     ||               Calculador multiusos           ||
+     ||                te sirve pa'todo              ||
+     ||                                              ||
+     ___________________________________________________
+     """)
 
-    continuar = True
-
-    while continuar:
-        mostrar_menu_principal()
-
-        opcion = input("\nSeleccione una opción (1-6): ")
-
-        if opcion == "1":
-            menu_calculadora_basica()
-
-        elif opcion == "2":
-            menu_conversor_unidades()
-
-        elif opcion == "3":
-            menu_sistemas_numericos()
-
-        elif opcion == "4":
-            mostrar_historial()
-
-        elif opcion == "5":
-            confirmacion = input("\n¿Está seguro de limpiar el historial? (s/n): ")
-            if confirmacion.lower() == "s":
-                limpiar_historial()
-                print("✅ Historial limpiado.")
-
+        print("1. Calculadora Básica\n2. Conversor de Datos\n3. Sistemas Numéricos\n4. Historial\n5. Borrar Historial \n6. Salir")
+        opcion = input("\nOpción: ")
+        if opcion == "1": menu_calculadora_basica()
+        elif opcion == "2": menu_conversor_unidades()
+        elif opcion == "3": menu_sistemas_numericos()
+        elif opcion == "4": mostrar_historial()
+        elif opcion == "5": borrar_historial()
         elif opcion == "6":
-            print("\n💾 Guardando historial...")
             guardar_historial_archivo()
-            print("✅ Historial guardado en datos/historial.txt")
-            print("\n¡Gracias por usar la Calculadora Multifuncional!")
-            print("¡Hasta pronto! 👋")
-            continuar = False
-
+            print("Chau!")
+            break
         else:
-            print("\n❌ Opción inválida. Por favor seleccione 1-6.")
+            print(" Opción no válida.")
 
-    print("\nPrograma terminado.")
-
-
-# Punto de entrada del programa
 if __name__ == "__main__":
     main()
     
