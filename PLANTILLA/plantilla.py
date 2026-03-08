@@ -214,7 +214,7 @@ def validar_numero(mensaje):
             numero = float(input(mensaje))
             return numero
         except ValueError:
-            print("❌ Error: Ingrese un número válido.")
+            print(" Error: Ingrese un número válido.")
 
 
 def validar_numero_entero(mensaje):
