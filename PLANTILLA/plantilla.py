@@ -3,15 +3,15 @@ Calculadora Multifuncional Interactiva - Versión Avanzada
 Proyecto de Tecnología Digital
 
 Equipo:
-<<<<<<< HEAD
+
 - Estudiante 1: Luis Daniel Negrete Mata - Estructura Principal y Gestión de Datos
 - Estudiante 2: Zurith Anelis Fierros Garcia  - Funciones Matemáticas
 - Estudiante 3: Luis Alejandro Ambriz Cordero - Conversores y Sistema de Historial
-=======
+
 - Estudiante 1: [Luis Daniel Negrete Mata ] - Estructura Principal y Gestión de Datos
 - Estudiante 2: [Zurith Anelis Fierros García] - Funciones Matemáticas
 - Estudiante 3: [Luis Alejandro Ambriz Cordero] - Conversores y Sistema de Historial
->>>>>>> 0a0813821a33a220160407704df4efe08586822d
+
 
 Fecha: Febrero 2026
 Universidad de Guadalajara - Campus GDL"""
