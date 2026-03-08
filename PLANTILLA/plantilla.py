@@ -301,7 +301,7 @@ def main():
     cargar_historial_archivo()
     while True:
         # Menú
-        print("""
+        print(r"""
       ++ ____________________________________________++
       ||                                              ||
       ||   _____   _   _    ____   _ _     __         ||
