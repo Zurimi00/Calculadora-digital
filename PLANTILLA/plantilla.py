@@ -239,7 +239,7 @@ def validar_numero_entero(mensaje):
 def mostrar_menu_principal():
     """Muestra el menú principal"""
     print("\n" + "="*60)
-    print("   CALCULADORA MULTIFUNCIONAL v2.0")
+    print("  CALCULADORA MULTIFUNCIONAL v2.0")
     print("="*60)
     print("\nMENÚ PRINCIPAL:")
     print("1. Calculadora Básica")
@@ -302,18 +302,18 @@ def main():
     while True:
         # Menú
         print("""
-  ++ ______________________________________________++
-     ||                                              ||
-     ||   _____   _   _    ____   _ _     __         ||
-     ||  | ____| | | | |  / ___| |  _  \ | |         ||
-     ||  | |     | | | | |  _    | | | | | |         ||
-     ||  | |___  | |_| | | |_| | | |_| | | |___      ||
-     ||  |_____|  \___/   \____| |____/  |_____|     ||
-     ||                                              ||
-     ||               Calculador multiusos           ||
-     ||                te sirve pa'todo              ||
-     ||                                              ||
-     ___________________________________________________
+      ++ ____________________________________________++
+      ||                                              ||
+      ||   _____   _   _    ____   _ _     __         ||
+      ||  | ____| | | | |  / ___| |  _  \ | |         ||
+      ||  | |     | | | | |  _    | | | | | |         ||
+      ||  | |___  | |_| | | |_| | | |_| | | |___      ||
+      ||  |_____|  \___/   \____| |____/  |_____|     ||
+      ||                                              ||
+      ||               Calculador multiusos           ||
+      ||                te sirve pa'todo              ||
+      ||                                              ||
+      ++______________________________________________++
      """)
 
         print("1. Calculadora Básica\n2. Conversor de Datos\n3. Sistemas Numéricos\n4. Historial\n5. Borrar Historial \n6. Salir")
@@ -328,7 +328,7 @@ def main():
             print("Chau!")
             break
         else:
-            print(" Opción no válida.")
+            print(" error Opción no válida.")
 
 if __name__ == "__main__":
     main()
