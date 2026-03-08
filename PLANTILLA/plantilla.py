@@ -3,13 +3,12 @@ Calculadora Multifuncional Interactiva - Versión Avanzada
 Proyecto de Tecnología Digital
 
 Equipo:
-- Estudiante 1: [Nombre] - Estructura Principal y Gestión de Datos
-- Estudiante 2: [Nombre] - Funciones Matemáticas
-- Estudiante 3: [Nombre] - Conversores y Sistema de Historial
+- Estudiante 1: Luis Daniel Negrete Mata - Estructura Principal y Gestión de Datos
+- Estudiante 2: Zurith Anelis Fierros Garcia  - Funciones Matemáticas
+- Estudiante 3: Luis Alejandro Ambriz Cordero - Conversores y Sistema de Historial
 
 Fecha: Febrero 2026
-Universidad de Guadalajara - Campus GDL
-"""
+Universidad de Guadalajara - Campus GDL"""
 
 import os
 from datetime import datetime
@@ -21,175 +20,66 @@ historial = []
 # SECCIÓN 1: FUNCIONES MATEMÁTICAS (Estudiante 2)
 # ============================================
 
-def sumar(a, b):
-    """
-    Suma dos números.
+#Funciones simples 
 
-    Args:
-        a (float): Primer número
-        b (float): Segundo número
-
-    Returns:
-        float: Resultado de la suma
-    """
-    return a + b
-
-
-def restar(a, b):
-    """
-    Resta dos números.
-
-    Args:
-        a (float): Primer número
-        b (float): Segundo número
-
-    Returns:
-        float: Resultado de la resta
-    """
-    # TODO: Implementar
-    pass
-
-
-def multiplicar(a, b):
-    """
-    Multiplica dos números.
-
-    Args:
-        a (float): Primer número
-        b (float): Segundo número
-
-    Returns:
-        float: Resultado de la multiplicación
-    """
-    # TODO: Implementar
-    pass
-
-
-def dividir(a, b):
-    """
-    Divide dos números.
-
-    Args:
-        a (float): Dividendo
-        b (float): Divisor
-
-    Returns:
-        float: Resultado de la división
-        None: Si b es cero
-
-    Raises:
-        None: Retorna None en lugar de lanzar excepción
-    """
-    # TODO: Implementar
-    # Verificar que b no sea cero
-    # Si b == 0, retornar None
-    # Si no, retornar a / b
-    pass
-
+def sumar(a, b): return a + b
+def restar(a, b): return a - b
+def multiplicar(a, b): return a * b
+def potencia(a, b): return a ** b  
 
 def modulo(a, b):
-    """
-    Calcula el módulo (residuo) de dos números.
+  #Division de modulo con validacion de division por cero
+  if b == 0: return None
+  return a % b
 
-    Args:
-        a (float): Dividendo
-        b (float): Divisor
-
-    Returns:
-        float: Residuo de la división
-    """
-    # TODO: Implementar
-    pass
-
-
-def potencia(a, b):
-    """
-    Calcula a elevado a la potencia b.
-
-    Args:
-        a (float): Base
-        b (float): Exponente
-
-    Returns:
-        float: Resultado de a^b
-    """
-    # TODO: Implementar
-    pass
+def dividir(a, b):
+    # División con validación de división por cero
+    if b == 0: return None
+    return a / b
 
 
 # ============================================
-# SECCIÓN 2: CONVERSIÓN DE SISTEMAS NUMÉRICOS (Estudiante 2)
+# SECCIÓN 2: CONVERSIÓN DE SISTEMAS NUMÉRICOS 
 # ============================================
 
 def decimal_a_binario(numero):
-    """
-    Convierte un número decimal a binario usando algoritmo manual.
-
-    Args:
-        numero (int): Número decimal
-
-    Returns:
-        str: Representación binaria como string
-    """
-    # TODO: Implementar algoritmo de división sucesiva
-    # Algoritmo:
-    # 1. Crear string vacío para resultado
-    # 2. Mientras numero > 0:
-    #    - residuo = numero % 2
-    #    - agregar residuo al inicio del string
-    #    - numero = numero // 2
-    # 3. Retornar el string
-    # Caso especial: si numero == 0, retornar "0"
-    pass
+    if numero == 0: return "0"
+    resultado = ""
+    while numero > 0:
+        residuo = numero % 2
+        resultado = str(residuo) + resultado
+        numero //= 2
+    return resultado
 
 
 def decimal_a_hexadecimal(numero):
-    """
-    Convierte un número decimal a hexadecimal.
+    if numero == 0: return "0"
+    valores_hex= "0123456789ABCDEF"
+    resultado = ""
 
-    Args:
-        numero (int): Número decimal
-
-    Returns:
-        str: Representación hexadecimal como string
-    """
-    # TODO: Implementar
-    # Pueden usar el método similar a binario
-    # Recordar: 10=A, 11=B, 12=C, 13=D, 14=E, 15=F
-    pass
-
+    while numero > 0:
+        residuo = numero % 16
+        resultado = valores_hex[residuo] + resultado
+        numero = numero // 16
+    
+    return resultado
 
 def binario_a_decimal(binario):
-    """
-    Convierte un número binario (string) a decimal.
+#Convierte el numero ingresado a string y luego a int para obtener el valor decimal
+    decimal = 0
+    binario_str = str(binario)[::-1]
 
-    Args:
-        binario (str): Número binario como string
+    for posicion in range(len(binario_str)):
+        digito = int(binario_str[posicion])
+        decimal += digito *(2 ** posicion)
 
-    Returns:
-        int: Número decimal
-    """
-    # TODO: Implementar
-    # Algoritmo:
-    # 1. Inicializar decimal = 0
-    # 2. Para cada dígito en binario (de derecha a izquierda):
-    #    - decimal += dígito * (2 ^ posición)
-    # 3. Retornar decimal
-    pass
+    return decimal
 
 
 def hexadecimal_a_decimal(hexadecimal):
-    """
-    Convierte un número hexadecimal (string) a decimal.
+     
+     return int(str(hexadecimal), 16)
 
-    Args:
-        hexadecimal (str): Número hexadecimal como string
-
-    Returns:
-        int: Número decimal
-    """
-    # TODO: Implementar
-    pass
 
 
 # ============================================
