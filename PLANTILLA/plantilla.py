@@ -111,11 +111,13 @@ def kilobytes_a_bytes(val): return val * 1000
 def agregar_al_historial(operacion, num1, num2, resultado):
     global historial
     fecha_hora = datetime.now().strftime("%H:%M:%S")
-    # Formato: fecha, operación, resultado
-    entrada = f"[{fecha_hora}] {operacion}: {num1} y {num2} = {resultado}"
+    if num2 == "-":
+        entrada = f"[{fecha_hora}] {operacion}({num1}) = {resultado}"
+    else:
+        entrada = f"[{fecha_hora}] {operacion}: {num1} y {num2} = {resultado}"
     historial.append(entrada)
-    # Almacenar solo las últimas 10 operaciones
     if len(historial) > 10: historial.pop(0)
+
 
 def mostrar_historial():
     print("\n" + "HISTORIAL RECIENTE " * 2)
@@ -125,30 +127,21 @@ def mostrar_historial():
         for i, registro in enumerate(historial, 1):
             print(f"  {i}. {registro}")
 
-def borrar_historial():
-  global historial
-  #Dar la opción al usuario de borrar el historial, se repite hasta que se ingrese una opcion valida
-  while True:
-    try:
-      opcion_borrar_historial = int(input("Seguro que quieres borrar el historial?\n1 = SI\n2 = NO\n"))
 
-      if opcion_borrar_historial == 1:
-        #Esto limpia el historial de la memoria
-        historial.clear()
-        if os.path.exists("datos/historial.txt"):
-          with open("datos/historial.txt", "w") as archivo:
-            archivo.write("")  # Vacía el archivo si es que existe
-        print("✅ Historial borrado correctamente.")
-        return
-      elif opcion_borrar_historial == 2:
-        #Esto vuelve al menu principal si se decide que no
-        return
-        #Se imprime si se elige una opcion invalida con numero entero
-      else:
-        print("Elige una de las opciones validas")
-        #Se imprime si se elige una letra como opcion
-    except ValueError:
-      print("Error: Debes ingresar un número entero")
+def borrar_historial():
+    global historial
+    while True:
+        try:
+            opcion = int(input("\n¿Borrar historial?\n1 = SI\n2 = NO\n> "))
+            if opcion == 1:
+                historial.clear()
+                if os.path.exists("datos/historial.txt"): os.remove("datos/historial.txt")
+                print("✅ Historial borrado.")
+                return
+            elif opcion == 2:
+                return
+        except ValueError:
+            print("Error: Ingresa un número (1 o 2).")
 
 
 # ============================================
@@ -156,43 +149,16 @@ def borrar_historial():
 # ============================================
 
 def guardar_historial_archivo():
-    """
-    Guarda el historial en el archivo datos/historial.txt
-    """
-    global historial
-
-    # TODO: Implementar
-    # 1. Crear carpeta "datos" si no existe (usar os.makedirs())
-    # 2. Abrir archivo "datos/historial.txt" en modo escritura ("w")
-    # 3. Escribir cada línea del historial al archivo
-    # 4. Cerrar archivo
-
-    # Ejemplo:
-    # if not os.path.exists("datos"):
-    #     os.makedirs("datos")
-    #
-    # with open("datos/historial.txt", "w") as archivo:
-    #     for linea in historial:
-    #         archivo.write(linea + "\n")
-
-    pass
+    if not os.path.exists("datos"): os.makedirs("datos")
+    with open("datos/historial.txt", "w") as archivo:
+        for linea in historial: archivo.write(linea + "\n")
 
 
 def cargar_historial_archivo():
-    """
-    Carga el historial desde el archivo datos/historial.txt
-    """
     global historial
-
-    # TODO: Implementar
-    # 1. Verificar si el archivo existe (os.path.exists())
-    # 2. Si existe:
-    #    - Abrir archivo en modo lectura ("r")
-    #    - Leer todas las líneas
-    #    - Agregar cada línea (sin \n) a la lista historial
-    # 3. Si no existe, no hacer nada
-
-    pass
+    if os.path.exists("datos/historial.txt"):
+        with open("datos/historial.txt", "r") as archivo:
+            historial = [linea.strip() for linea in archivo.readlines()]
 
 
 # ============================================
@@ -200,99 +166,94 @@ def cargar_historial_archivo():
 # ============================================
 
 def validar_numero(mensaje):
-    """
-    Solicita y valida un número al usuario.
-
-    Args:
-        mensaje (str): Mensaje a mostrar
-
-    Returns:
-        float: Número validado
-    """
     while True:
         try:
-            numero = float(input(mensaje))
-            return numero
+            return float(input(mensaje))
         except ValueError:
-            print(" Error: Ingrese un número válido.")
+            print(" ❌ Error: Ingrese un número válido.")
 
 
 def validar_numero_entero(mensaje):
-    """
-    Solicita y valida un número entero al usuario.
-
-    Args:
-        mensaje (str): Mensaje a mostrar
-
-    Returns:
-        int: Número entero validado
-    """
-    # TODO: Implementar similar a validar_numero
-    # pero convirtiendo a int en lugar de float
-    pass
+    while True:
+        try:
+            return int(input(mensaje))
+        except ValueError:
+            print(" ❌ Error: Ingrese un número entero.")
 
 
 # ============================================
 # SECCIÓN 7: MENÚS (Estudiante 1)
 # ============================================
 
-def mostrar_menu_principal():
-    """Muestra el menú principal"""
-    print("\n" + "="*60)
-    print("  CALCULADORA MULTIFUNCIONAL v2.0")
-    print("="*60)
-    print("\nMENÚ PRINCIPAL:")
-    print("1. Calculadora Básica")
-    print("2. Conversor de Unidades de Datos")
-    print("3. Calculadora de Sistemas Numéricos")
-    print("4. Ver Historial")
-    print("5. Limpiar Historial")
-    print("6. Salir")
-    print("-"*60)
-
-
 def menu_calculadora_basica():
-    """Menú y lógica de la calculadora básica"""
     print("\n--- CALCULADORA BÁSICA ---")
-    print("1. Suma")
-    print("2. Resta")
-    print("3. Multiplicación")
-    print("4. División")
-    print("5. Módulo (residuo)")
-    print("6. Potencia")
-    print("7. Volver al menú principal")
+    print("1. Suma\n2. Resta\n3. Mult\n4. Div\n5. Potencia\n6. Volver")
+    op = input("Opción: ")
+    if op == "6": return
+    n1, n2 = validar_numero("Num 1: "), validar_numero("Num 2: ")
+    res = None
+    if op == "1":
+        res, n_op = sumar(n1, n2), "Suma"
+    elif op == "2":
+        res, n_op = restar(n1, n2), "Resta"
+    elif op == "3":
+        res, n_op = multiplicar(n1, n2), "Mult"
+    elif op == "4":
+        res, n_op = dividir(n1, n2), "Div"
+    elif op == "5":
+        res, n_op = potencia(n1, n2), "Potencia"
 
-    opcion = input("\nSeleccione operación: ")
-
-    if opcion == "7":
-        return
-
-    # Solicitar números
-    num1 = validar_numero("Ingrese el primer número: ")
-    num2 = validar_numero("Ingrese el segundo número: ")
-
-    # TODO: Implementar lógica según opción
-    # - Si opcion == "1": resultado = sumar(num1, num2)
-    # - Si opcion == "2": resultado = restar(num1, num2)
-    # - etc.
-    # - Mostrar resultado
-    # - Llamar a agregar_al_historial()
-
-    pass
+    if res is not None:
+        print(f" ✅ Resultado: {res}")
+        agregar_al_historial(n_op, n1, n2, res)
+    else:
+        print(" ❌ Error en la operación.")
 
 
 def menu_conversor_unidades():
-    """Menú y lógica del conversor de unidades"""
-    # TODO: Implementar
-    pass
+    print("\n--- CONVERSOR DE DATOS (Base 1000) ---")
+    print("1. Bits a Bytes\n2. KB a MB\n3. MB a GB\n4. GB a MB\n5. MB a KB\n6. KB a Bytes\n7. Volver")
+    op = input("Seleccione: ")
+    if op == "7": return
+    val = validar_numero("Cantidad: ")
+
+    if op == "1":
+        res, n_op = bits_a_bytes(val), "Bits a Bytes"
+    elif op == "2":
+        res, n_op = kilobytes_a_megabytes(val), "KB a MB"
+    elif op == "3":
+        res, n_op = megabytes_a_gigabytes(val), "MB a GB"
+    elif op == "4":
+        res, n_op = gigabytes_a_megabytes(val), "GB a MB"
+    elif op == "5":
+        res, n_op = megabytes_a_kilobytes(val), "MB a KB"
+    elif op == "6":
+        res, n_op = kilobytes_a_bytes(val), "KB a B"
+    else:
+        return
+
+    print(f" ✅ Resultado: {res}")
+    agregar_al_historial(n_op, val, "-", res)
 
 
 def menu_sistemas_numericos():
-    """Menú y lógica de conversión de sistemas numéricos"""
-    # TODO: Implementar
-    pass
-
-
+    print("\n--- SISTEMAS NUMÉRICOS ---")
+    print("1. Dec a Bin\n2. Dec a Hex\n3. Bin a Dec\n4. Volver")
+    op = input("Seleccione: ")
+    if op == "4": return
+    if op in ["1", "2"]:
+        n = validar_numero_entero("Número decimal: ")
+        res = decimal_a_binario(n) if op == "1" else decimal_a_hexadecimal(n)
+        print(f" ✅ Resultado: {res}")
+        agregar_al_historial("Conversión", n, "-", res)
+    elif op == "3":
+        b = input(" Ingrese binario: ")
+        res = binario_a_decimal(b)
+        if res is not None:
+            print(f" ✅ Resultado: {res}")
+            agregar_al_historial("Bin a Dec", b, "-", res)
+        else:
+            print(" ❌ Binario no válido.")
 # ============================================
 # PROGRAMA PRINCIPAL
 # ============================================
