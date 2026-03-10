@@ -16,7 +16,7 @@ Proyecto de Calculadora digital multiusos del Curso de Python UdeG
 ## Instrucciones de instalación y uso
 - Descarga el repositorio
 - Coloca sus contenidos dentro de una carpeta
-- Ejecuta el programada Calculadora_multiusos
+- Ejecuta el programa Calculadora_multiusos que se encuentra en la carpeta PLANTILLA
 - Realiza cualquier operación que ocupes
 - Cuando termines elige la opción de salir del programa
 - Disfruta de tu calculadora multiusos!
