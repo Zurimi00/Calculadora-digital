@@ -7,10 +7,11 @@ Proyecto de Calculadora digital multiusos del Curso de Python UdeG
 - Estudiante 3: Luis Alejandro Ambriz Cordero - Conversores y Sistema de Historial
 
 ## Funciones disponibles:
-- Funciones matematicas simples
-- Convertidor de sistemas numericos
-- Convertidor de unidades
+- Funciones matematicas simples (Suma, resta, division, multiplicacion y modulo)
+- Convertidor de sistemas numericos (Decimal a binario/hexadecimal y muchos más) 
+- Convertidor de unidades (Bits a bytes, KB a MB, etc.)
 - Guardado / Borrado del historial
+- Validacion de los numeros ingresados
 
 ## Instrucciones de instalación y uso
 - Descarga el repositorio
