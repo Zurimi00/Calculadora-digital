@@ -4,10 +4,6 @@ Proyecto de Tecnología Digital
 
 Equipo:
 
-- Estudiante 1: Luis Daniel Negrete Mata - Estructura Principal y Gestión de Datos
-- Estudiante 2: Zurith Anelis Fierros Garcia  - Funciones Matemáticas
-- Estudiante 3: Luis Alejandro Ambriz Cordero - Conversores y Sistema de Historial
-
 - Estudiante 1: [Luis Daniel Negrete Mata ] - Estructura Principal y Gestión de Datos
 - Estudiante 2: [Zurith Anelis Fierros García] - Funciones Matemáticas
 - Estudiante 3: [Luis Alejandro Ambriz Cordero] - Conversores y Sistema de Historial
